@@ -11,9 +11,15 @@ import UIKit
 protocol DMModelProtocol {
     func cellWidth() -> CGFloat;
     var configuration : Configuration {get set}
+    var cellType: DMCellType {get set}
 }
 
 class DMModel: NSObject, DMModelProtocol{
+    internal var cellType: DMCellType = {
+        let type : DMCellType = .DMCellNormal;
+        return type;
+    }()
+
     internal var configuration: Configuration = {
         let config : Configuration = Configuration.init();
         return config;
@@ -30,20 +36,21 @@ class DMModel: NSObject, DMModelProtocol{
     }
 }
 
-
 /// Cell 类型
 ///
 /// - DMCellLeft:   滚动cell
 /// - DMCellTop:    顶部cell
 /// - DMCellBottom: 底部cell
-enum DMCellType {
+public enum DMCellType {
     case DMCellNormal
     case DMCellTop
     case DMCellBottom
 }
 
+
+
 /// cell一些配置
 class Configuration: NSObject {
     public var contentColor : UIColor?
-    public var cellType : DMCellType?
+    
 }

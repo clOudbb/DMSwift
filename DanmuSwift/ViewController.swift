@@ -38,7 +38,6 @@ class ViewController: UIViewController, DMViewDataSource {
     let model : DMModel = {
         let m : DMModel = DMModel();
         let config : Configuration = Configuration();
-        config.cellType = DMCellType.DMCellNormal;
         config.contentColor = UIColor.white;
         m.configuration = config;
         m.width = 50;

@@ -54,7 +54,7 @@ class DMView: UIView {
                 let animationDuration : TimeInterval = dmCell.calculateAnimationDuration(width: self.frame.size.width, cellWidth:model.cellWidth());
                 let row : Int = dmCell.checkOutAvailablyCell(number: self.number!, currentShowCells:self.currentCells);
                 
-                self.classifyWith(model: model);
+                self.classifyWith(model: model, dmCell: dmCell);
                 dmCell.frame = self.calculateCellFrame(row: row, cellWidth: model.cellWidth());
                 if !self.subviews.contains(dmCell) {
                     self.addSubview(dmCell);
@@ -72,9 +72,9 @@ class DMView: UIView {
     /// 从重用池中取回cell
     func dequeueReusableCell(identifier : String) -> DMCell {
         let aCell : DMCell = DMCell.init();
-        for aCell in self.reusingCellPoll! {
-            if aCell.DMCellIdentifier .isEqual(identifier){
-                return aCell;
+        for cell in self.reusingCellPoll! {
+            if cell.DMCellIdentifier .isEqual(identifier){
+                return cell;
             }
         }
         return aCell;
@@ -85,12 +85,14 @@ class DMView: UIView {
     }
     
     //将数据分类
-    func classifyWith(model : DMModel) -> Void {
-        if model.configuration.cellType == DMCellType.DMCellNormal{
+    func classifyWith(model : DMModel , dmCell : DMCell) -> Void {
+        //设定dmcell类型
+        dmCell.cellType = model.cellType;
+        if model.cellType == DMCellType.DMCellNormal{
             self.normalSource.add(model);
-        } else if model.configuration.cellType == DMCellType.DMCellTop{
+        } else if model.cellType == DMCellType.DMCellTop{
             self.topSource.add(model);
-        } else if model.configuration.cellType == DMCellType.DMCellBottom{
+        } else if model.cellType == DMCellType.DMCellBottom{
             self.bottomSource.add(model);
         }
     }

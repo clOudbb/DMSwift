@@ -9,20 +9,25 @@
 import UIKit
 
 class DMCell: UIView, CAAnimationDelegate{
-    public var DMCellIdentifier : String = "DMCellIdentifierWithLeft";
+    public var DMCellIdentifier : String = "DMCellIdentifier";
     public var startTime : NSDate?   // 弹幕开始时间
     public var stopTime : NSDate?
     public var row : Int?    //弹幕所在轨道
     public var duration : TimeInterval?
     public var cellWidth : CGFloat?
-    public var speed : CGFloat = 100;    
+    public var speed : CGFloat = 100;
+    public var cellType : DMCellType = .DMCellNormal;
 
     
     override init(frame: CGRect) {
         super.init(frame: frame);
-        
     }
     
+    convenience init(DMCellIdentifier : String){
+        self.init();
+        self.DMCellIdentifier = DMCellIdentifier;
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
