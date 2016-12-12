@@ -21,7 +21,7 @@ class ViewController: UIViewController, DMViewDataSource {
 //        var cell : DMCell = self.dView.retrieveCell(identifier: "DMCellIdentifierWithLeft");
 //        if cell as DMCell! == nil {
 //        let cell : DMCell = DMCell.init();
-        let cell : DMCell = DMCell.init();
+        let cell : CustomCell = CustomCell.init();
         cell.model = self.model;
 //        }
 //        cell.content = "123";

@@ -15,10 +15,11 @@
 		0115368D1DB08AB900F3F14A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0115368B1DB08AB900F3F14A /* LaunchScreen.storyboard */; };
 		011536981DB08AB900F3F14A /* DanmuSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011536971DB08AB900F3F14A /* DanmuSwiftTests.swift */; };
 		011536A31DB08AB900F3F14A /* DanmuSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011536A21DB08AB900F3F14A /* DanmuSwiftUITests.swift */; };
-		011536B11DB08C8F00F3F14A /* DMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011536B01DB08C8F00F3F14A /* DMCell.swift */; };
-		011536B31DB0AF7100F3F14A /* DMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011536B21DB0AF7100F3F14A /* DMView.swift */; };
-		011536B51DB0B06D00F3F14A /* DMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011536B41DB0B06D00F3F14A /* DMModel.swift */; };
 		01518BE81DD3109A0068F2FF /* kiminonamai.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01518BE71DD3109A0068F2FF /* kiminonamai.jpg */; };
+		01A9A14B1DFE8BA700312078 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9A14A1DFE8BA700312078 /* CustomCell.swift */; };
+		01A9A1501DFE9A7500312078 /* DMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9A14D1DFE9A7500312078 /* DMCell.swift */; };
+		01A9A1511DFE9A7500312078 /* DMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9A14E1DFE9A7500312078 /* DMModel.swift */; };
+		01A9A1521DFE9A7500312078 /* DMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9A14F1DFE9A7500312078 /* DMView.swift */; };
 		01D2BB741DBF4CA200F4E29F /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2BB521DBF4CA200F4E29F /* Constraint.swift */; };
 		01D2BB751DBF4CA200F4E29F /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2BB531DBF4CA200F4E29F /* ConstraintAttributes.swift */; };
 		01D2BB761DBF4CA200F4E29F /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2BB541DBF4CA200F4E29F /* ConstraintConfig.swift */; };
@@ -89,10 +90,11 @@
 		0115369E1DB08AB900F3F14A /* DanmuSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DanmuSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		011536A21DB08AB900F3F14A /* DanmuSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanmuSwiftUITests.swift; sourceTree = "<group>"; };
 		011536A41DB08AB900F3F14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		011536B01DB08C8F00F3F14A /* DMCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCell.swift; sourceTree = "<group>"; };
-		011536B21DB0AF7100F3F14A /* DMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMView.swift; sourceTree = "<group>"; };
-		011536B41DB0B06D00F3F14A /* DMModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMModel.swift; sourceTree = "<group>"; };
 		01518BE71DD3109A0068F2FF /* kiminonamai.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = kiminonamai.jpg; path = DanmuSwift/SnapKit/kiminonamai.jpg; sourceTree = "<group>"; };
+		01A9A14A1DFE8BA700312078 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		01A9A14D1DFE9A7500312078 /* DMCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCell.swift; sourceTree = "<group>"; };
+		01A9A14E1DFE9A7500312078 /* DMModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMModel.swift; sourceTree = "<group>"; };
+		01A9A14F1DFE9A7500312078 /* DMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMView.swift; sourceTree = "<group>"; };
 		01D2BB521DBF4CA200F4E29F /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		01D2BB531DBF4CA200F4E29F /* ConstraintAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAttributes.swift; sourceTree = "<group>"; };
 		01D2BB541DBF4CA200F4E29F /* ConstraintConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintConfig.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				01518BE71DD3109A0068F2FF /* kiminonamai.jpg */,
+				01A9A14C1DFE9A7500312078 /* DMSwift */,
 				01D2BB511DBF4CA200F4E29F /* SnapKit */,
 				011536811DB08AB900F3F14A /* DanmuSwift */,
 				011536961DB08AB900F3F14A /* DanmuSwiftTests */,
@@ -195,9 +198,7 @@
 			children = (
 				011536821DB08AB900F3F14A /* AppDelegate.swift */,
 				011536841DB08AB900F3F14A /* ViewController.swift */,
-				011536B01DB08C8F00F3F14A /* DMCell.swift */,
-				011536B21DB0AF7100F3F14A /* DMView.swift */,
-				011536B41DB0B06D00F3F14A /* DMModel.swift */,
+				01A9A14A1DFE8BA700312078 /* CustomCell.swift */,
 				01144A311DB4F752003D4599 /* ZZHView.swift */,
 				011536861DB08AB900F3F14A /* Main.storyboard */,
 				011536891DB08AB900F3F14A /* Assets.xcassets */,
@@ -223,6 +224,16 @@
 				011536A41DB08AB900F3F14A /* Info.plist */,
 			);
 			path = DanmuSwiftUITests;
+			sourceTree = "<group>";
+		};
+		01A9A14C1DFE9A7500312078 /* DMSwift */ = {
+			isa = PBXGroup;
+			children = (
+				01A9A14D1DFE9A7500312078 /* DMCell.swift */,
+				01A9A14E1DFE9A7500312078 /* DMModel.swift */,
+				01A9A14F1DFE9A7500312078 /* DMView.swift */,
+			);
+			path = DMSwift;
 			sourceTree = "<group>";
 		};
 		01D2BB511DBF4CA200F4E29F /* SnapKit */ = {
@@ -559,27 +570,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				011536851DB08AB900F3F14A /* ViewController.swift in Sources */,
+				01A9A14B1DFE8BA700312078 /* CustomCell.swift in Sources */,
 				01D2BB8F1DBF4CA200F4E29F /* ConstraintViewDSL.swift in Sources */,
 				01D2BB751DBF4CA200F4E29F /* ConstraintAttributes.swift in Sources */,
 				01D2BB821DBF4CA200F4E29F /* ConstraintMaker.swift in Sources */,
 				01D2BB791DBF4CA200F4E29F /* ConstraintDSL.swift in Sources */,
 				01144A321DB4F752003D4599 /* ZZHView.swift in Sources */,
 				01D2BB811DBF4CA200F4E29F /* ConstraintLayoutSupportDSL.swift in Sources */,
+				01A9A1501DFE9A7500312078 /* DMCell.swift in Sources */,
 				01D2BB7E1DBF4CA200F4E29F /* ConstraintLayoutGuide.swift in Sources */,
 				01D2BB831DBF4CA200F4E29F /* ConstraintMakerEditable.swift in Sources */,
 				01D2BB741DBF4CA200F4E29F /* Constraint.swift in Sources */,
 				01D2BB761DBF4CA200F4E29F /* ConstraintConfig.swift in Sources */,
 				01D2BB931DBF4CA200F4E29F /* LayoutConstraintItem.swift in Sources */,
 				01D2BB851DBF4CA200F4E29F /* ConstraintMakerFinalizable.swift in Sources */,
-				011536B11DB08C8F00F3F14A /* DMCell.swift in Sources */,
 				01D2BB8E1DBF4CA200F4E29F /* ConstraintView.swift in Sources */,
 				01D2BB7A1DBF4CA200F4E29F /* ConstraintInsets.swift in Sources */,
 				01D2BB941DBF4CA200F4E29F /* UILayoutSupport+Extensions.swift in Sources */,
 				01D2BB801DBF4CA200F4E29F /* ConstraintLayoutSupport.swift in Sources */,
-				011536B51DB0B06D00F3F14A /* DMModel.swift in Sources */,
 				01D2BB771DBF4CA200F4E29F /* ConstraintConstantTarget.swift in Sources */,
 				011536831DB08AB900F3F14A /* AppDelegate.swift in Sources */,
-				011536B31DB0AF7100F3F14A /* DMView.swift in Sources */,
 				01D2BB841DBF4CA200F4E29F /* ConstraintMakerExtendable.swift in Sources */,
 				01D2BB781DBF4CA200F4E29F /* ConstraintDescription.swift in Sources */,
 				01D2BB901DBF4CA200F4E29F /* Debugging.swift in Sources */,
@@ -587,8 +597,10 @@
 				01D2BB8D1DBF4CA200F4E29F /* ConstraintView+Extensions.swift in Sources */,
 				01D2BB8C1DBF4CA200F4E29F /* ConstraintRelation.swift in Sources */,
 				01D2BB7D1DBF4CA200F4E29F /* ConstraintLayoutGuide+Extensions.swift in Sources */,
+				01A9A1521DFE9A7500312078 /* DMView.swift in Sources */,
 				01D2BB7B1DBF4CA200F4E29F /* ConstraintInsetTarget.swift in Sources */,
 				01D2BB891DBF4CA200F4E29F /* ConstraintOffsetTarget.swift in Sources */,
+				01A9A1511DFE9A7500312078 /* DMModel.swift in Sources */,
 				01D2BB7C1DBF4CA200F4E29F /* ConstraintItem.swift in Sources */,
 				01D2BB7F1DBF4CA200F4E29F /* ConstraintLayoutGuideDSL.swift in Sources */,
 				01D2BB881DBF4CA200F4E29F /* ConstraintMultiplierTarget.swift in Sources */,

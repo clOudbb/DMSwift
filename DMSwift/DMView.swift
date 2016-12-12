@@ -14,7 +14,7 @@ protocol DMViewDataSource {
     func DMViewWith(numberOfDmView dmView : DMView) -> Int;
 }
 
-class DMView: UIView{
+class DMView: UIView {
     /// cell重用池
     var reusingCellPoll : [DMCell]?
     /// DataSource协议
@@ -71,9 +71,9 @@ class DMView: UIView{
     
     /// 从重用池中取回cell
     func dequeueReusableCell(identifier : String) -> DMCell {
-        let aCell : DMCell = DMCell();
+        let aCell : DMCell = DMCell.init();
         for aCell in self.reusingCellPoll! {
-            if aCell.DMCellIdentifier .isEqual(to: identifier){
+            if aCell.DMCellIdentifier .isEqual(identifier){
                 return aCell;
             }
         }

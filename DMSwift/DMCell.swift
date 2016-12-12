@@ -9,68 +9,17 @@
 import UIKit
 
 class DMCell: UIView, CAAnimationDelegate{
-    public let DMCellIdentifier : NSString = "DMCellIdentifierWithLeft";
+    public var DMCellIdentifier : String = "DMCellIdentifierWithLeft";
     public var startTime : NSDate?   // 弹幕开始时间
     public var stopTime : NSDate?
     public var row : Int?    //弹幕所在轨道
     public var duration : TimeInterval?
     public var cellWidth : CGFloat?
-    public var speed : CGFloat = 100;
-    // 弹幕文字
-    public var content : NSString? {
-        willSet
-        {
-            print(newValue as Any);
-            self.label.text = newValue as String!;
-        }
-        didSet
-        {
-            print(oldValue as Any);
-        }
-    }
-    
-    lazy var label : UILabel =
-        {
-            let label : UILabel = UILabel.init();
-            label.font = UIFont.systemFont(ofSize: 12);
-            label.textColor = UIColor.white;
-            return label;
-    }();
-    
-    lazy var imgView : UIImageView =
-        {
-            let imgView : UIImageView = UIImageView.init();
-            imgView.layer.masksToBounds = true;
-            imgView.layer.cornerRadius = 10;
-            return imgView;
-    }();
-    
-    var model : DMModel? {
-        willSet{
-            self.imgView.image = UIImage.init(named: "kiminonamai.jpg");
-            self.label.text = newValue?.content;
-        }
-    }
+    public var speed : CGFloat = 100;    
+
     
     override init(frame: CGRect) {
         super.init(frame: frame);
-        self.backgroundColor = UIColor.blue;
-        self.layer.masksToBounds = true;
-        self.layer.cornerRadius = 10;
-        
-        self.addSubview(self.imgView);
-        self.imgView.snp.makeConstraints { (make) in
-            make.left.equalTo(5);
-            make.centerY.equalToSuperview();
-            make.size.equalTo(CGSize.init(width: 20, height: 20));
-        }
-        
-        self.addSubview(self.label);
-        self.label.snp.makeConstraints { (make) in
-            make.left.equalTo(self.imgView.snp.right).offset(10);
-            make.top.bottom.right.equalTo(0);
-        }
-        
         
     }
     
