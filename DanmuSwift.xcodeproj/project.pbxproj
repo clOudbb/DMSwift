@@ -377,8 +377,7 @@
 				TargetAttributes = {
 					0115367E1DB08AB800F3F14A = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = WE93J94P7B;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					011536921DB08AB900F3F14A = {
 						CreatedOnToolsVersion = 8.0;
@@ -761,7 +760,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = WE93J94P7B;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DanmuSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -777,7 +776,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = WE93J94P7B;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DanmuSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

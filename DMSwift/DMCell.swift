@@ -9,7 +9,7 @@
 import UIKit
 
 class DMCell: UIView, CAAnimationDelegate{
-    public var DMCellIdentifier : String = "DMCellIdentifier";
+    public var DMCellIdentifier : String = "";
     public var startTime : NSDate?   // 弹幕开始时间
     public var stopTime : NSDate?
     public var row : Int?    //弹幕所在轨道
@@ -23,16 +23,16 @@ class DMCell: UIView, CAAnimationDelegate{
         super.init(frame: frame);
     }
     
-    convenience init(DMCellIdentifier : String){
+    convenience public init(DMCellIdentifier : String){
         self.init();
         self.DMCellIdentifier = DMCellIdentifier;
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var completion : () -> Void = {
+    fileprivate var completion : () -> Void = {
         () in
         return;
     }
@@ -43,7 +43,7 @@ class DMCell: UIView, CAAnimationDelegate{
     ///   - duration: 动画时间
     ///   - ready: 动画开始闭包
     ///   - completion: 动画完成逃逸闭包
-    func startAnimation(duration : TimeInterval, ready : () -> Void, completion : @escaping () -> Void){
+    public func startAnimation(duration : TimeInterval, ready : () -> Void, completion : @escaping () -> Void){
         ready();
         self.startTime = NSDate.init(timeIntervalSinceNow: 0);
         self.duration = duration;
@@ -63,7 +63,7 @@ class DMCell: UIView, CAAnimationDelegate{
 //                }
     }
     //检出一个轨道判断
-    func checkOutAvailablyCell(number : Int, currentShowCells : NSMutableArray) -> Int {
+    public func checkOutAvailablyCell(number : Int, currentShowCells : NSMutableArray) -> Int {
         let availableArray : NSMutableArray = NSMutableArray.init();   //可用轨道
         let freeArray : NSMutableArray = NSMutableArray.init();           // 空闲轨道
         currentShowCells.sort(usingComparator: { (first, second) -> ComparisonResult in
@@ -149,7 +149,7 @@ class DMCell: UIView, CAAnimationDelegate{
 //    }
     
     ///检测是否碰撞 (目前检测碰撞 或者 计算动画时间 有问题 导致轨道检测不准确)
-    func checkColide(cell : DMCell) -> Bool {
+    public func checkColide(cell : DMCell) -> Bool {
         let t : TimeInterval = self.duration! - (TimeInterval)(self.cellWidth! / self.speed);
         var now : NSDate = NSDate.init(timeIntervalSinceNow: 0);
         if self.stopTime != nil {
@@ -166,7 +166,7 @@ class DMCell: UIView, CAAnimationDelegate{
         }
     }
     /// 计算动画时间
-    func calculateAnimationDuration(width : CGFloat, cellWidth : CGFloat) -> TimeInterval {
+    public func calculateAnimationDuration(width : CGFloat, cellWidth : CGFloat) -> TimeInterval {
         self.cellWidth = cellWidth;
         self.duration = (TimeInterval)((cellWidth + width) / self.speed);
         return self.duration!;

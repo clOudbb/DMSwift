@@ -27,7 +27,7 @@ class DMModel: NSObject, DMModelProtocol{
     public var content : String?
     public var width : CGFloat?
     
-    func cellWidth() -> CGFloat {
+    public func cellWidth() -> CGFloat {
         let dic = NSDictionary.init(object: UIFont.systemFont(ofSize: 12), forKey: NSFontAttributeName as NSCopying);
         let rect : CGRect = (self.content! as NSString).boundingRect(with: CGSize.init(width: 0, height: 20), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: (dic as! [String : Any]), context: nil);
 //        self.width = rect.size.width + 32;
@@ -52,5 +52,4 @@ public enum DMCellType {
 /// cell一些配置
 class Configuration: NSObject {
     public var contentColor : UIColor?
-    
 }

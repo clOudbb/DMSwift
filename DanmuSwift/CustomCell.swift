@@ -33,6 +33,10 @@ class CustomCell: DMCell {
         }
     }
     
+    convenience init(_ identifier : String){
+        self.init(DMCellIdentifier : identifier);
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame);
         self.backgroundColor = UIColor.blue;
