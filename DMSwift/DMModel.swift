@@ -14,7 +14,7 @@ protocol DMModelProtocol {
     var cellType: DMCellType {get set}
 }
 
-class DMModel: NSObject, DMModelProtocol{
+open class DMModel: NSObject, DMModelProtocol{
     internal var cellType: DMCellType = {
         let type : DMCellType = .DMCellNormal;
         return type;
@@ -30,8 +30,6 @@ class DMModel: NSObject, DMModelProtocol{
     public func cellWidth() -> CGFloat {
         let dic = NSDictionary.init(object: UIFont.systemFont(ofSize: 12), forKey: NSFontAttributeName as NSCopying);
         let rect : CGRect = (self.content! as NSString).boundingRect(with: CGSize.init(width: 0, height: 20), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: (dic as! [String : Any]), context: nil);
-//        self.width = rect.size.width + 32;
-//        self.width = rect.size.width;
         return rect.size.width + 56;
     }
 }

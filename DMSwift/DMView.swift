@@ -14,7 +14,7 @@ protocol DMViewDataSource {
     func DMViewWith(numberOfDmView dmView : DMView) -> Int;
 }
 
-class DMView: UIView {
+final class DMView: UIView {
     /// cell重用池
     fileprivate var reusingCellPoll : [DMCell] = [];
     /// DataSource协议
@@ -75,9 +75,7 @@ class DMView: UIView {
         }
     }
     
-     /*
-       * 这里很大的坑，目前不知如何解决，主要需要继承DMCell的CustomCell去接收一个父类对象，但由于Swift的类型检查导致无法实现
-       */
+
     ///注册重用池
     public func registerDmCellPoll(_ cellClass : DMCell, identifier : String) -> Void {
         self.number = self.dataSource?.DMViewWith(numberOfDmView: self);

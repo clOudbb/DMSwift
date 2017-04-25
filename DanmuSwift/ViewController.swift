@@ -14,7 +14,7 @@ let kScreenHeight : CGFloat = UIScreen.main.bounds.size.height;
 class ViewController: UIViewController, DMViewDataSource {
     
     public func DMViewWith(numberOfDmView dmView: DMView) -> Int {
-        return 5;
+        return 10;
     }
 
     public func DMViewWith(dmView: DMView, index: Int) -> DMCell {
