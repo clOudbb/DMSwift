@@ -8,26 +8,31 @@
 
 import UIKit
 
-class DMCell: UIView, CAAnimationDelegate{
-    public var DMCellIdentifier : String = "DMCellIdentifierWithLeft";
+open class DMCell: UIView, CAAnimationDelegate{
+    public var DMCellIdentifier : String = "";
     public var startTime : NSDate?   // 弹幕开始时间
     public var stopTime : NSDate?
     public var row : Int?    //弹幕所在轨道
     public var duration : TimeInterval?
     public var cellWidth : CGFloat?
-    public var speed : CGFloat = 100;    
+    public var speed : CGFloat = 100;
+    public var cellType : DMCellType = .DMCellNormal;
 
     
     override init(frame: CGRect) {
         super.init(frame: frame);
-        
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    convenience public init(DMCellIdentifier : String){
+        self.init();
+        self.DMCellIdentifier = DMCellIdentifier;
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var completion : () -> Void = {
+    fileprivate var completion : () -> Void = {
         () in
         return;
     }
@@ -38,7 +43,7 @@ class DMCell: UIView, CAAnimationDelegate{
     ///   - duration: 动画时间
     ///   - ready: 动画开始闭包
     ///   - completion: 动画完成逃逸闭包
-    func startAnimation(duration : TimeInterval, ready : () -> Void, completion : @escaping () -> Void){
+    public func startAnimation(duration : TimeInterval, ready : () -> Void, completion : @escaping () -> Void){
         ready();
         self.startTime = NSDate.init(timeIntervalSinceNow: 0);
         self.duration = duration;
@@ -52,19 +57,17 @@ class DMCell: UIView, CAAnimationDelegate{
         self.layer.add(animation, forKey: nil);
         self.completion = completion;
 
-//                UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
-//                    self.frame = CGRect.init(x: toPoint.x, y: toPoint.y, width: self.frame.size.width, height: self.frame.size.height);
-//                    }) { (true) in
-//                }
     }
-    //检出一个轨道判断
-    func checkOutAvailablyCell(number : Int, currentShowCells : NSMutableArray) -> Int {
+    
+    
+    //检出一个轨道判断 优先检出轨道上没有弹幕的轨道，其次检出置上而下的轨道
+    public func checkOutAvailablyCell(number : Int, currentShowCells : NSMutableArray) -> Int {
         let availableArray : NSMutableArray = NSMutableArray.init();   //可用轨道
         let freeArray : NSMutableArray = NSMutableArray.init();           // 空闲轨道
         currentShowCells.sort(usingComparator: { (first, second) -> ComparisonResult in
             let f = first as! DMCell;
             let s = second as! DMCell;
-            return (f.startTime?.compare(s.startTime as! Date))!;
+            return (f.startTime?.compare(s.startTime! as Date))!;
         });
         NSLog("当前屏幕有%d个弹幕", currentShowCells.count);
         for row in 0..<number{
@@ -144,7 +147,7 @@ class DMCell: UIView, CAAnimationDelegate{
 //    }
     
     ///检测是否碰撞 (目前检测碰撞 或者 计算动画时间 有问题 导致轨道检测不准确)
-    func checkColide(cell : DMCell) -> Bool {
+    public func checkColide(cell : DMCell) -> Bool {
         let t : TimeInterval = self.duration! - (TimeInterval)(self.cellWidth! / self.speed);
         var now : NSDate = NSDate.init(timeIntervalSinceNow: 0);
         if self.stopTime != nil {
@@ -161,13 +164,13 @@ class DMCell: UIView, CAAnimationDelegate{
         }
     }
     /// 计算动画时间
-    func calculateAnimationDuration(width : CGFloat, cellWidth : CGFloat) -> TimeInterval {
+    public func calculateAnimationDuration(width : CGFloat, cellWidth : CGFloat) -> TimeInterval {
         self.cellWidth = cellWidth;
         self.duration = (TimeInterval)((cellWidth + width) / self.speed);
         return self.duration!;
     }
     
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
             self.completion();
         }

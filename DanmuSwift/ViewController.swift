@@ -14,31 +14,30 @@ let kScreenHeight : CGFloat = UIScreen.main.bounds.size.height;
 class ViewController: UIViewController, DMViewDataSource {
     
     public func DMViewWith(numberOfDmView dmView: DMView) -> Int {
-        return 5;
+        return 10;
     }
 
     public func DMViewWith(dmView: DMView, index: Int) -> DMCell {
-//        var cell : DMCell = self.dView.retrieveCell(identifier: "DMCellIdentifierWithLeft");
-//        if cell as DMCell! == nil {
-//        let cell : DMCell = DMCell.init();
-        let cell : CustomCell = CustomCell.init();
-        cell.model = self.model;
-//        }
-//        cell.content = "123";
-        return cell;
+        
+        var cell = dmView.dequeueReusableCell(identifier: "dmCell") as? CustomCell;
+        if nil == cell {
+            cell = CustomCell.init("dmCell");
+        }
+        cell?.model = self.model;
+        return cell!;
     }
 
     lazy var dView : DMView = {
         let dView : DMView = DMView.init(frame: CGRect.init(x: 0, y: 10, width: kScreenWidth, height: 200));
         dView.dataSource = self;
         dView.backgroundColor = UIColor.orange;
+//        dView.registerDmCellPoll(CustomCell(), identifier: "dmCell");
         return dView;
     }();
     
     let model : DMModel = {
         let m : DMModel = DMModel();
         let config : Configuration = Configuration();
-        config.cellType = DMCellType.DMCellNormal;
         config.contentColor = UIColor.white;
         m.configuration = config;
         m.width = 50;

@@ -11,10 +11,10 @@ import UIKit
 class ZZHView: UIView {
 
     var tableView : UITableView?
-    override init(frame: CGRect) {
-        super.init(frame: frame);
-        
-        
+
+    
+    convenience init() {
+        self.init();
     }
 
     

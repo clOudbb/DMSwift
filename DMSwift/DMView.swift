@@ -14,23 +14,23 @@ protocol DMViewDataSource {
     func DMViewWith(numberOfDmView dmView : DMView) -> Int;
 }
 
-class DMView: UIView {
+final class DMView: UIView {
     /// cell重用池
-    var reusingCellPoll : [DMCell]?
+    fileprivate var reusingCellPoll : [DMCell] = [];
     /// DataSource协议
-    var dataSource : DMViewDataSource?
+    public var dataSource : DMViewDataSource?
     /// 数据源
-    var dataArray : [DMModel] = [];
+    fileprivate var dataArray : [DMModel] = [];
     // 轨道数
-    var number : Int?
+    fileprivate var number : Int?
     // 正在展示的cell
-    var currentCells : NSMutableArray = [];
+    fileprivate var currentCells : NSMutableArray = [];
     // 普通类型弹幕数据
-    var normalSource : NSMutableArray = [];
-    var topSource : NSMutableArray = [];
-    var bottomSource : NSMutableArray = [];
+    fileprivate var normalSource : NSMutableArray = [];
+    fileprivate var topSource : NSMutableArray = [];
+    fileprivate var bottomSource : NSMutableArray = [];
     
-    let cellHeight = 20;
+    private let cellHeight = 20;
     
     override init(frame: CGRect) {
         super.init(frame: frame);
@@ -45,16 +45,20 @@ class DMView: UIView {
     ///
     /// - parameter array:  数据源
     /// - parameter isShow: 是否立即显示
-    func sendDM(array : [DMModel], isShow : Bool) -> Void {
+    public func sendDM(array : [DMModel], isShow : Bool) -> Void {
         self.dataArray = array;
-        self.number = self.dataSource?.DMViewWith(numberOfDmView: self);
         if  isShow {
             for model  in self.dataArray {
                 let dmCell : DMCell = (self.dataSource?.DMViewWith(dmView: self, index: (self.dataArray.index(of: model))!))!;
+                self.number = self.dataSource?.DMViewWith(numberOfDmView: self);
+                /* 如果包含从重用池中移除 */
+                if self.reusingCellPoll.contains(dmCell) {
+                    self.reusingCellPoll.remove(at: self.reusingCellPoll.index(of: dmCell)!);
+                }
                 let animationDuration : TimeInterval = dmCell.calculateAnimationDuration(width: self.frame.size.width, cellWidth:model.cellWidth());
                 let row : Int = dmCell.checkOutAvailablyCell(number: self.number!, currentShowCells:self.currentCells);
                 
-                self.classifyWith(model: model);
+                self.classifyWith(model: model, dmCell: dmCell);
                 dmCell.frame = self.calculateCellFrame(row: row, cellWidth: model.cellWidth());
                 if !self.subviews.contains(dmCell) {
                     self.addSubview(dmCell);
@@ -62,41 +66,57 @@ class DMView: UIView {
                 dmCell.startAnimation(duration: animationDuration, ready: {
                     currentCells.add(dmCell);
                 }, completion: {
+                    self.reusingCellPoll.append(dmCell);   /* 加入重用池 */
                     self.currentCells.remove(dmCell);
+                    dmCell.removeFromSuperview();
                 });
             }
             //            self.dataArray?.removeAll();
         }
     }
     
+
+    ///注册重用池
+    public func registerDmCellPoll(_ cellClass : DMCell, identifier : String) -> Void {
+        self.number = self.dataSource?.DMViewWith(numberOfDmView: self);
+        for _ in 0..<self.number! {
+            self.reusingCellPoll.append(cellClass);
+        }
+    }
+   
     /// 从重用池中取回cell
-    func dequeueReusableCell(identifier : String) -> DMCell {
-        let aCell : DMCell = DMCell.init();
-        for aCell in self.reusingCellPoll! {
-            if aCell.DMCellIdentifier .isEqual(identifier){
-                return aCell;
+    public func dequeueReusableCell(identifier : String) -> DMCell? {
+        guard self.reusingCellPoll.count > 0 else {
+            return nil;
+        }
+        for cell  in self.reusingCellPoll {
+            if cell.DMCellIdentifier .isEqual(identifier){
+                return cell;
             }
         }
-        return aCell;
+        return nil;
     }
+    
     //检测可用轨道
-    func checkAvailablyCell(currentCell : DMCell) -> Int {
+    fileprivate func checkAvailablyCell(currentCell : DMCell) -> Int {
         return currentCell.checkOutAvailablyCell(number: self.number!, currentShowCells: self.currentCells);
     }
     
     //将数据分类
-    func classifyWith(model : DMModel) -> Void {
-        if model.configuration.cellType == DMCellType.DMCellNormal{
+    fileprivate func classifyWith(model : DMModel , dmCell : DMCell) -> Void {
+        //设定dmcell类型
+        dmCell.cellType = model.cellType;
+        if model.cellType == DMCellType.DMCellNormal{
             self.normalSource.add(model);
-        } else if model.configuration.cellType == DMCellType.DMCellTop{
+        } else if model.cellType == DMCellType.DMCellTop{
             self.topSource.add(model);
-        } else if model.configuration.cellType == DMCellType.DMCellBottom{
+        } else if model.cellType == DMCellType.DMCellBottom{
             self.bottomSource.add(model);
         }
     }
     
     //计算cell初始位置
-    func calculateCellFrame(row : Int, cellWidth : CGFloat) -> CGRect {
+    fileprivate func calculateCellFrame(row : Int, cellWidth : CGFloat) -> CGRect {
         if  row >= 0 {
             return CGRect.init(x: self.frame.size.width, y: CGFloat(Int(self.frame.size.height) / self.number! * row), width: cellWidth, height: CGFloat(cellHeight))
         } else {
