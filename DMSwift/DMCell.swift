@@ -36,9 +36,7 @@ open class DMCell: UIView, CAAnimationDelegate{
         () in
         return;
     }
-    /// 使用CABasic动画中keyPath不同会所计算的坐标不同 改用UIView动画
-    /// position是控件中心点坐标，计算时需计算控件本身二分之一
-    ///
+
     /// - Parameters:
     ///   - duration: 动画时间
     ///   - ready: 动画开始闭包
