@@ -10,8 +10,8 @@ import UIKit
 
 open class DMCell: UIView, CAAnimationDelegate{
     public var DMCellIdentifier : String = "";
-    public var startTime : NSDate?   // 弹幕开始时间
-    public var stopTime : NSDate?
+    public var startTime : Date?   // 弹幕开始时间
+    public var stopTime : Date?
     public var row : Int?    //弹幕所在轨道
     public var duration : TimeInterval?
     public var cellWidth : CGFloat?
@@ -43,7 +43,7 @@ open class DMCell: UIView, CAAnimationDelegate{
     ///   - completion: 动画完成逃逸闭包
     public func startAnimation(duration : TimeInterval, ready : () -> Void, completion : @escaping () -> Void){
         ready();
-        self.startTime = NSDate.init(timeIntervalSinceNow: 0);
+        self.startTime = Date.init(timeIntervalSinceNow: 0)
         self.duration = duration;
         
         let animation : CABasicAnimation = CABasicAnimation.init();
@@ -147,7 +147,7 @@ open class DMCell: UIView, CAAnimationDelegate{
     ///检测是否碰撞 (目前检测碰撞 或者 计算动画时间 有问题 导致轨道检测不准确)
     public func checkColide(cell : DMCell) -> Bool {
         let t : TimeInterval = self.duration! - (TimeInterval)(self.cellWidth! / self.speed);
-        var now : NSDate = NSDate.init(timeIntervalSinceNow: 0);
+        var now : Date = Date.init(timeIntervalSinceNow: 0);
         if self.stopTime != nil {
             now = self.stopTime!;
         }
