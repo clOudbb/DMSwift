@@ -1,2 +1,7 @@
 # DMSwift
-a Swift Barrage repository
+
+## 一个Swift3.0实现的弹幕基础功能
+> 基本逻辑有如下
+* 优先寻找空闲轨道
+* 次级寻找非碰撞轨道
+* 最后从上至下寻找轨道
